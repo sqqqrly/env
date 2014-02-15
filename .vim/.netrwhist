@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/dohlemacher/TENA/5.2.2/src/sdsn/trunk/sandbox/sdsnGuis/libHmi'
+let g:netrw_dirhist_2='/media/vault/bunker/charon/dohlemacher/HMI_VB.vmx.lck'
+let g:netrw_dirhist_3='/home/dohlemacher'
+let g:netrw_dirhist_4='/home/dohlemacher/python/mayavi/source'
+let g:netrw_dirhist_5='/home/dohlemacher/.subversion/auth/svn.simple'
+let g:netrw_dirhist_6='/home/dohlemacher/.oh-my-zsh'
+let g:netrw_dirhist_7='/home/dohlemacher/dev/unixtech/MFC.CPI/src'

@@ -1,0 +1,77 @@
+10
+
+dir
+6766
+svn://saturn.hds.com/environment/trunk/.vim
+svn://saturn.hds.com
+
+
+
+2012-10-15T16:06:56.123655Z
+6766
+dlarue
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+d53dc860-5200-aa4e-807d-1a454ba8521c
+
+.netrwhist
+file
+
+
+
+
+2012-10-15T16:06:36.577751Z
+25415d011a1cc30e602d4c30903edf9f
+2012-10-15T16:06:56.123655Z
+6766
+dlarue
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+267
+
+autoload
+dir
+
+ftplugin
+dir
+
+bundle
+dir
+
+bundleNotUsed
+dir
+
+plugin
+dir
+
