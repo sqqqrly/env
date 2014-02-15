@@ -1,0 +1,233 @@
+# dco -*-Shell-Script-*-
+# global aliases
+
+if ( $DCO_WINTYPE == solarisWindow) then
+    source ${HOME}/.arch_dependent/$DCO_WINTYPE
+endif
+
+
+#
+# Prompt
+if ( $?tcsh == "1" ) then
+#    alias reprompt     'set prompt = (\(%B%m%b\:%U`id -u -n`%u:%c\)\ )'
+#    alias reprompt	'set prompt = "%n@%m|%B%c2%b[%h]%# "'
+#    alias reprompt	'set prompt = "%{\033[01;36m%}%n%{\033[00;35m%}@%{\033[00;32m%}%m%{\033[01;36m%}:%{\033[00;35m%}%~%{\033[01;32m%}%#%{\033[00;00m%} "'
+    alias reprompt	'set prompt = "%{\033[00;31m%}%n%{\033[01;34m%}@%{\033[00;31m%}%m%{\033[01;34m%}:%{\033[00;32m%}%c2%{\033[01;34m%}:%{\033[00;35m%}%h%{\033[01;33m%}%#%{\033[00;00m%} "'
+else
+    alias reprompt      'set prompt = (\(`hostname`\:$cwd:t\)\ )'
+endif
+
+# Use a special prompt when executing :sh from within vim
+if $?VIM then
+    alias reprompt	'set prompt = "VIM:%{\033[00;31m%}%n%{\033[01;34m%}@%{\033[00;31m%}%m%{\033[01;34m%}:%{\033[00;32m%}%c2%{\033[01;34m%}:%{\033[00;35m%}%h%{\033[01;33m%}%#%{\033[00;00m%} "'
+endif
+
+alias xterm     'xterm -bg black -fg white'
+alias u         'cd ..'
+alias u2        'cd ../..'
+alias u3        'cd ../../..'
+alias u4        'cd ../../../..'
+alias u5        'cd ../../../../..'
+alias eq        'echo ========================================'
+alias cp		'cp -i'
+alias mv		'mv -i'
+alias rm		'rm -i'
+alias df        'df -h'
+alias du        'du -sh'
+alias gi       	'grep -i'
+alias grepenv   'printenv | grep -i'
+alias ff       	'find . -name \!* -print'
+alias h         'history'
+alias lo        'logout'
+alias pp        'popd \!*; reprompt'
+alias pd       	'pushd \!*; reprompt'
+alias dr        'dirs'
+alias head      'head -n 20'
+alias hexdump   'hexdump -C'
+alias cd        'set old="$cwd"; chdir \!*; reprompt'
+alias b         'set new="$old"; set old="$cwd"; chdir "$new"; reprompt'
+alias cal       'cal -3'
+alias xs       	'set noglob; eval `resize`'
+alias sxt      	'tset -sn -e xterm'
+alias ctlswap  	'xmodmap ${HOME}/.swap'
+alias bs2er     'xmodmap -e "keysym BackSpace = Delete"'
+alias rcsinfo   'rlog -L -R RCS/*,v'
+
+#alias ftp       'ftp -p'
+alias ssh       'ssh -X'
+#alias tun       'ssh -X -C dohlemacher@nytemare.dyndns.org'
+#alias tun       'ssh -c arcfour,blowfish-cbc -XC dohlemacher@nytemare.dyndns.org'
+alias tun       'ssh -c arcfour,blowfish-cbc -X dohlemacher@nytemare.dyndns.org'
+alias tunscp    'scp \!:1 dohlemacher@nytemare.dyndns.org:'
+alias 16        'ssh -X root@sixteen9ths.org'
+
+alias fe        'foreach file'
+alias mroe      'more'
+alias more      'less -N'
+alias bmore     /bin/more
+alias bore      /bin/more
+alias d         'pwd'
+alias r         'resize > /dev/null'
+alias nm        'nm --demangle'
+
+alias l			'less -N'
+alias halt	    'halt -p'
+if ( $DCO_WINTYPE == solarisWindow) then
+    alias ls '/home2/dohlemac/bin/solaris/bin/ls -a --color=tty'
+else
+    alias ls 'ls --color=tty'
+    alias lsl 'ls -t -r --color=tty'
+endif
+alias startxs   'gsynaptics-init; startx'
+alias lsm       '/bin/ls -sCF \!* | more'
+alias la        'ls -a --color=tty'
+alias ll        '/bin/ls -l --color=tty'
+alias l.		'll -d .*'
+alias sl        'll'
+alias sgrep     'grep \!* *.[ch]'
+alias grep      'grep --color'
+alias pgrep   'find . -path "*/.svn" -prune -o -print0 | xargs -0 grep'
+
+alias h         history
+
+alias clr       clear
+alias c         'echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo;echo'
+alias cl        clear
+alias cle       clear
+alias clea      clear
+alias jul       'date +%j'
+alias lman      'man -M ${HOME}/catman \!*'
+
+alias lt        'ls -t'
+alias llt       'll -t'
+
+alias cprint    'enscript -fCourier6 -r -P${PRINTER} -h'
+
+alias sc        'source ~/.cshrc'
+alias xemacs    'xemacs \!* &'
+alias xe        'xemacs \!* &'
+alias emacs     'xemacs \!* &'
+alias ..        'cd ..'
+alias path      'echo $path'
+alias dis       'echo $DISPLAY'
+alias maxima    'maxima -q'
+
+#alias date 'date +"%a %h %d  %I:%M:%S %p   %Z %Y"'
+
+alias mn        'nroff -man \!* | more'
+alias sgrep     'grep -i \!* *.[ch]'
+alias g         grep
+alias f   	    'clear; fortune -l'
+
+alias m         'make'
+alias mc        'clear; make clean'
+alias ma        'make all'
+alias mi        'make install'
+alias diff      'diff -w \!*'
+
+alias setpathlink   'source ${HOME}/.paths;set build=$BUILD;set build2=$build:h;reprompt'
+
+alias mail      Mail
+alias xpdf 		'xpdf -z 150'
+alias mp 'mpeg_play -controls off -quality on -dither color2 -framerate 20 \!*'
+alias rm        'rm -i'
+alias mv        'mv -i'
+alias cp        'cp -i'
+alias lsdot     "ls -A | grep '^\.'"
+alias ip        `/sbin/ifconfig | grep 'inet addr:' | grep -v '127.0.0.1' | cut -d: -f2 | /usr/bin/head -n 1  | awk '{print $1}'`
+
+# macros
+alias Brm     'foreach file ( \!* ) \
+                 if ( -f ${PWD}/$file ) then \
+                   setenv RMFILE ${PWD}/$file \
+                 else \
+                   setenv RMFILE $file \
+                 endif \
+                 if ( -f ${RMFILE:h}/.noBrm ) then \
+                   echo Brm disallowed on $RMFILE \
+                 else \
+                   /bin/rm -rf $RMFILE \
+                 endif \
+               end'
+
+alias cdiff   'set argl=(\!*); \
+               if ( -f ${HOME}/CDIFF ) rm ${HOME}/CDIFF ; endif ;\
+               set t1=$argl[1]; \
+               set t2=$argl[2]; \
+               date > ${HOME}/CDIFF \
+               echo cdiff from $cwd >> ${HOME}/CDIFF \
+               echo "" >> ${HOME}/CDIFF \
+               echo $t1 >> ${HOME}/CDIFF \
+               echo "vs" >> ${HOME}/CDIFF \
+               echo $t2 >> ${HOME}/CDIFF \
+               echo "" >> ${HOME}/CDIFF \
+               echo "" >> ${HOME}/CDIFF \
+               echo "" >> ${HOME}/CDIFF \
+               foreach file ( $t1/*.[ch] ) \
+                 echo -n "--------CDIFF---->  " >> ${HOME}/CDIFF \
+                 echo $file >> ${HOME}/CDIFF \
+                 /bin/diff -w $file $t2/$file >>& ${HOME}/CDIFF \
+               end'
+
+#                diff $file $t2/$file \
+
+alias top20	    'echo "Top 20 Directories Under $HOME"; cd; du -ks * .??* | sort -rn | head -n 20'
+alias top20.	'echo "Top 20 Directories Under $PWD"; du -ks * .??* | sort -rn | head -n 20'
+alias ip 'ifconfig | grep "inet addr:" | grep -v 127.0.0.1 | cut -d: -f2'
+#| awk '{ print $1}'
+
+# KDE Stuff
+alias kopen    'kfmclient exec'
+
+alias hdstrunk "cd ~/TENA/5.2.2/src/sdsn/trunk"
+
+# Applications
+alias mysql 'mysql --show-warnings'
+alias kdevelop 'kdevelop >& /dev/null'
+alias ass 'assistant >& /dev/null &'
+alias riprp  'cd /home/dohlemacher/Music/ripped/; streamripper http://www.radioparadise.com/musiclinks/rp_128.m3u -q 2401 -a %T_%A_rp_%d -M 250'
+alias riprp2 'cd /home/dohlemacher/Music/ripped/; streamripper http://www.radioparadise.com/musiclinks/rp_128.m3u -q 2401 -D %q_%T_%A_rp_%d -M 800 --with-id3v1'
+alias mplayervm 'mplayer -vo xv'
+
+alias synccharon 'rsync -av --progress --delete --delete-excluded --exclude '/home/dohlemacher/Downloads' /home/dohlemacher /media/dohlemacher/vault/bunker/charon/'
+
+# GLG
+#alias builder '/usr/local/glg/eval/bin/GlgBuilder'
+
+# Java
+alias javac 'javac -source 1.4'
+alias java 'java -ea -dsa'
+alias argouml '/opt/argo/argouml.sh'
+
+# SOAP
+alias soapcpp2 "/home/`whoami`/tools/gsoap-linux-2.7/bin/soapcpp2"
+alias wdl2h "/home/`whoami`/tools/gsoap-linux-2.7/bin/wsdl2h"
+
+alias su '/bin/su -m'
+alias cdr 'cdrecord -v -pad -eject fs=4m speed=4 dev=1,0,0'
+alias matlab 'matlab -nosplash -nojvm -nowin'
+alias umbre 'setenv QT_NO_GLIB 1; setenv MALLOC_CHECK_ 0; umbrello;'
+
+alias prettypath "env | grep ^PATH= | sed -e 's#:#\n#g' -e 's#/cygdrive/c#c:#g' -e 's#/#\\#g'"
+alias fritzing "$home/bin/fritzing/Fritzing >& /dev/null &"
+alias dict "curl dict://dict.org/d:\!:1"
+alias haste /home/dohlemacher/bin/seejohnrun-haste-client-42bad59/bin/haste
+alias pyserve "python -m SimpleHTTPServer"
+
+####################
+### Game Servers ###
+####################
+set bzMsg='WelcomeToTheBaboosicLakeBzFlagServer'
+set bzfsCmd='/usr/games/bzfs -i 192.168.1.104 -ms 10 -sa -sb -t -s -a 50 38 -h -j -mp 1,1,1,1,1,1 -srvmsg $bzMsg'
+  alias bzcrazy   "$bzfsCmd -world ~/games/bzfsWorlds/crazyWingWorld.bzw"
+  alias bzairport "$bzfsCmd -world ~/games/bzfsWorlds/airport.bzw"
+  alias bzjungle  "$bzfsCmd -world ~/games/bzfsWorlds/jungle.bzw"
+  alias bzjunctf  "$bzfsCmd -world ~/games/bzfsWorlds/junCTF.bzw"
+  alias bzfreedom "$bzfsCmd -world ~/games/bzfsWorlds/freedom.bzw"
+alias lbreakoutserver   '/usr/games/lbreakout2server -m "Welcome to the Baboosic Lake lbreakout server"'
+alias ad                '/usr/games/armagetronad-dedicated'
+alias pacman '~/bin/love-0.8.0/src/love ~/bin/pacpac/pacpac.love'
+
+# Now reprompt
+reprompt
+

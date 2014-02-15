@@ -1,0 +1,17 @@
+###################################
+#
+# Utilities for Making
+#
+
+setenv MAKELINUX    gmake
+setenv CC    		gcc
+setenv CPLUS 		g++
+setenv AR     		ar
+setenv ARFLAGS		cr
+
+setenv JAVAC  		javac
+setenv JAVA   		java
+setenv JAR    		jar
+#setenv JAVACFLAGS	'-sourcepath ../. -d .'
+#setenv JAVAFLAGS 
+#setenv JARFLAGS 	'cf'

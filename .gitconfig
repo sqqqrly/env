@@ -1,0 +1,11 @@
+[user]
+	email = ohlemacher@ieee.org
+	name = dohlemacher
+[core]
+	editor = vim
+[color]
+	ui = true
+	status = auto
+	branch = auto
+[merge]
+	tool = vimdiff

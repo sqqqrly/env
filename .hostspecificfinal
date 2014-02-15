@@ -1,0 +1,64 @@
+
+# Host specific final settings
+switch ($HOSTNAME)
+    case phobos.hds.com:
+    case ida.hds.com:
+    case wopr-ida.hds.com:
+    case bhhmi001.hds.com:
+    case bhhmi002.hds.com:
+    case aquila.hds.com:
+    case bhda001.hds.com:
+    case bhda002.hds.com:
+        # TENA
+        setenv TENA_TDL_VER '1.34'
+        setenv TENA_SDSN_VERSION '2.0'
+        setenv TENA_SDSN_BRANCH 'trunk'
+
+        set tenaEnvVar="~/TENA/5.2.2/scripts/tenaenv-rhelws4-gcc34-d-v5.2.2.csh"
+        if ( -e $tenaEnvVar ) then
+        source $tenaEnvVar > /dev/null
+        endif
+
+        # Qt
+        source ~/.qt45rc
+        setenv PATH "${PATH}:/usr/local/Trolltech/Qt-4.5.0/bin"
+        setenv QMAKESPEC "linux-g++"
+        setenv QTDIR "/home/${USER}/tools/qt-x11-opensource-src-4.5.0/"j
+        set tenaEnvFile=~/TENA/5.2.2/scripts/tenaenv-rhel5-gcc41-d-v5.2.2.csh
+        if ( -e "$tenaEnvFile" ) then
+            source $tenaEnvFile > /dev/null
+        else
+            echo "Error: $tenaEnvFile not found"
+        endif
+
+        # HDS  - Aliases here so they can use the env just set
+        alias hds           'cat /home/${USER}/.hostspecificfinal | grep alias\ hds'
+        alias hdsconfig     'chkconfig --list | grep hds'
+        alias hdsenv        'env | grep TENA'
+        alias hdskonsole    'konsole --profile hds'
+        alias hdsparam      "echo 'Example: -ORBdefaultInitRef corbaloc:iiop:[EM]:55544 -ORBlistenEndpoints iiop://[IP] -executionName hds -verbosity 3'; echo '         -ORBdefaultInitRef corbaloc:iiop:[EM]:55544 -executionName hds -verbosity 3';"
+        alias hdsps         "ps -A | grep -E 'hdscontrol|hdsdisplay|hdsstatus|hds|^da|bitMan|tsjbMan|timingMan|c2man|daReplay|geoserver|logger|sysControl'"
+        alias hdsrmcp.      "rm -rf ./HDS ./basic* ./minimalLibrary.cpp;  cp -r $TENA_HOME/$TENA_VERSION/src/HDS-Harbor-Defense-v${TENA_TDL_VER}/HDS  $TENA_HOME/$TENA_VERSION/src/HDS-Harbor-Defense-v${TENA_TDL_VER}/basic*.h $TENA_HOME/$TENA_VERSION/src/HDS-Harbor-Defense-v${TENA_TDL_VER}/basic*.cpp  $TENA_HOME/$TENA_VERSION/src/HDS-Harbor-Defense-v${TENA_TDL_VER}/minimalLibrary.cpp  ."
+        alias hdsrpms       "rpm -qa | grep -E 'hds'; rpm -qa | grep -E '^ssi'; rpm -qa | grep -E '^daemonize';"
+        alias hdsstatus     'echo "Root Required or services will be unrecognized:"; echo; echo "DA Services:"; service hdsExecManServ status; service hdsNetNameServ status; service hdsDaServ status; service hdsDaReplayServ status; service hdsSysControlServ status; echo; echo "IS Services:"; service hdsbitManServ status; service hdsGeoserverServ status; service hdsC2manServ status; service hdsLoggerServ status; service hdsSysControlServ status; service hdsTimingManServ status; service hdsTsjbManServ status; service hdsWfdaReplayServ status; service hdsWfdaServ status;'
+        alias hdstrunk      "cd $TENA_HOME/$TENA_VERSION/src/sdsn/$TENA_SDSN_BRANCH"
+
+        # Other
+        alias vi "vimx"
+        alias vim "vimx"
+        breaksw
+    
+    case charon.hds.com:
+        alias hdstrunk "cd ~/TENA/5.2.2/src/sdsn/trunk"
+        breaksw
+endsw
+
+switch ($HOSTNAME)
+    case bhhmi001.hds.com:
+        setenv PATH "${PATH}:/usr/lib/qt4/bin"
+        setenv path "/usr/lib/qt4/bin $path"
+        setenv QMAKESPEC "linux-g++"
+        setenv QTDIR "/usr/lib/qt4"
+        breaksw
+endsw
+

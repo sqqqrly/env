@@ -1,0 +1,40 @@
+# DCO -*-Shell-Script-*- [Courtesy of Chris Fortin]
+# switch by hostname into host specific init scripts
+
+# advanced mods to machine types
+switch ($HOSTNAME)
+	case nix.scisol.com:
+	case hydra.hds.com:
+	case da01.sdsn.com:
+    case hdsda001.hds.com:
+    case hdsis001.hds.com:
+	case hdsem.hds.com:
+	case nix.hds.com:
+	case blondie.bbn.com:
+	case scoot.bbn.com:
+	case quahog.bbn.com:
+	case satchmo.bbn.com:
+	case erskine.bbn.com:
+    case erskine:
+	case localhost.localdomain:
+	#	its a linux
+		setenv TYPE	linux
+		setenv DCO_WINTYPE linuxWindow
+		setenv DCO_UNIXTYPE	sysv
+		breaksw
+	case zevon.bbn.com:
+	#	its a solaris box
+		setenv TYPE	solaris
+		setenv DCO_WINTYPE solarisWindow
+		setenv DCO_UNIXTYPE	sysv
+		breaksw
+	default:
+	#	print a diag and assume a linux window
+	   	setenv DCO_ERROR `uname -n`
+	#	echo   "\033[01;31m$DCO_ERROR not matched. Defaulting to *Linux*\033[m"
+		setenv TYPE linux
+		setenv DCO_WINTYPE linuxWindow
+		setenv DCO_UNIXTYPE sysv	
+		breaksw
+endsw
+

@@ -1,0 +1,26 @@
+# DCO -*-Shell-Script-*- [Courtesy of Chris Fortin]
+# paths
+#
+
+unset path
+set path = ""
+set path = ( \
+    $PATH \
+    /usr/local/bin \
+    /bin \
+    /usr/bin \
+    /sbin \
+    /usr/sbin \
+    /etc \
+    /usr/etc \
+    /usr/X11R6/bin \
+    ~/bin \
+#    $JAVA_HOME \
+#	$J2RE_HOME/bin \
+#    $ACE_ROOT \
+    ~/$GOPATH/bin \
+    . \
+)
+#set PATH=($PATH /usr/local/bin /bin /usr/bin /sbin /usr/sbin /etc /usr/etc \
+# /usr/X11R6/bin ~/bin ~/local/bin $ACE_ROOT .)
+
